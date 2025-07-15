@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-color: ##808080;
+  background-color: #7098a1;
   color: white;
   width: 250px;
   padding: 2rem 1rem;
@@ -50,7 +50,7 @@ header a {
 
 header a:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: #1a237e;
 }
 
 .wrapper {
