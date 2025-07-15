@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-color: ##90caf9;
+  background-color: ##80a6c4;
   color: white;
   width: 250px;
   padding: 2rem 1rem;
@@ -61,7 +61,7 @@ header a:hover {
 }
 
 h1, h2, h3 {
-  color: #1a237e;
+  color: #80a6c4;
   margin-top: 1.5rem;
 }
 
