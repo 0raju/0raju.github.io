@@ -95,3 +95,52 @@ footer {
     padding: 1rem;
   }
 }
+
+#Activities {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 40px;
+  border-left: 3px solid #5c6bc0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-date {
+  position: absolute;
+  left: -130px;
+  width: 120px;
+  text-align: right;
+  font-weight: bold;
+  color: #5c6bc0;
+}
+
+.timeline-content {
+  background: #f9f9fe;
+  border-left: 5px solid #5c6bc0;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+.timeline-content a {
+  color: #1a237e;
+  text-decoration: none;
+}
+
+.timeline-content a:hover {
+  text-decoration: underline;
+}
+
+.timeline-content:hover {
+  background: #eef1ff;
+}
+
