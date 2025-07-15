@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
   
 <!--   <head>
@@ -19,24 +19,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
   
-  <body>
-
-      <header>
-        <img src="Images/raju.JPG" alt="Mehedi Hasan Raju">
-        <h1>Mehedi Hasan Raju</h1>
-        <p>Ph.D. Student<br>Computer Science<br>Texas State University</p>
-        <a href="#Biography">Biography</a>
-        <a href="#Activities">PhD Timeline</a>
-        <a href="#Education">Education</a>
-        <a href="#Research">Research</a>
-        <a href="#Teaching">Teaching</a>
-        <a href="#VolunteerService">Volunteer Service</a>
-        <a href="#PhotoGallery">Photo Gallery</a>
-        <a href="#Contact">Contact</a>
-      </header>
-
-
-    
+  <body>  
     <div class="wrapper">
       <header>
         <img src="Images/raju.JPG" alt="portrait" class="inline" style="width: 20vw; height: 12vw;"/>
@@ -277,3 +260,195 @@
     
   </body>
 </html>
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehedi Hasan Raju</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #1a237e;
+      color: white;
+      width: 250px;
+      padding: 2rem 1rem;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    header a {
+      color: #bbdefb;
+      text-decoration: none;
+      display: block;
+      margin: 0.5rem 0;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+
+    .wrapper {
+      margin-left: 270px;
+      padding: 2rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    h1, h2, h3 {
+      color: #1a237e;
+      margin-top: 1.5rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      header {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      .wrapper {
+        margin-left: 0;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="Images/raju.JPG" alt="Mehedi Hasan Raju">
+    <h1>Mehedi Hasan Raju</h1>
+    <p>Ph.D. Student<br>Computer Science<br>Texas State University</p>
+    <a href="#Biography">Biography</a>
+    <a href="#Activities">PhD Timeline</a>
+    <a href="#Education">Education</a>
+    <a href="#Research">Research</a>
+    <a href="#Teaching">Teaching</a>
+    <a href="#VolunteerService">Volunteer Service</a>
+    <a href="#PhotoGallery">Photo Gallery</a>
+    <a href="#Contact">Contact</a>
+  </header>
+
+  <div class="wrapper">
+    <section id="Biography">
+      <h2>Biography</h2>
+      <p>I am a final-year doctoral student in the Department of Computer Science at Texas State University focusing on Eye-Tracking under the supervision of <a href="https://userweb.cs.txstate.edu/~ok11/" target="_blank">Dr. Oleg Komogortsev</a>. My research revolves around eye tracking, eye-movement biometrics, and signal processing.</p>
+    </section>
+
+    <section id="Activities">
+      <h2>PhD Timeline</h2>
+      <ul>
+        <li>May 2025 - Paper accepted at IEEE SPW 2025.</li>
+        <li>March 2025 - Paper accepted at ETRA 2025.</li>
+      </ul>
+    </section>
+
+    <section id="Education">
+      <h2>Education</h2>
+      <ul>
+        <li><b>Ph.D. in Computer Science</b> - Texas State University, 2021–Present</li>
+        <li><b>B.Sc. in Information and Communication Engineering</b> - BUP, Bangladesh, 2015–2018</li>
+      </ul>
+    </section>
+
+    <section id="Research">
+      <h2>Research</h2>
+      <p><b>Interests:</b> Eye-tracking, Biometrics, Machine Learning, Signal Processing</p>
+      <p><b>Publications:</b> See full list on <a href="https://scholar.google.com/citations?user=lrfyJKIAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
+    </section>
+
+    <section id="Teaching">
+      <h2>Teaching</h2>
+      <ul>
+        <li>CS 1428 - Foundations of Computer Science I (2021–2024)</li>
+        <li>CS 7321 - HCI (Fall 2024)</li>
+      </ul>
+    </section>
+
+    <section id="VolunteerService">
+      <h2>Volunteer Service</h2>
+      <ul>
+        <li>President, Bangladesh Students Association @ TXST (2022–2023)</li>
+        <li>Vice Chair, IEEE BUP Student Branch (2017–2018)</li>
+      </ul>
+    </section>
+
+    <section id="PhotoGallery">
+      <h2>Photo Gallery</h2>
+      <a href="photos.html">Books Read</a>
+    </section>
+
+    <section id="Contact">
+      <h2>Contact</h2>
+      <ul>
+        <li>Email: m.raju@txstate.edu</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><small>Last updated on February 05, 2025. Hosted on GitHub Pages.</small></p>
+    </footer>
+  </div>
+</body>
+
+</html>
+
+
