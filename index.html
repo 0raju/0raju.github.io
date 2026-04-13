@@ -128,8 +128,16 @@
       overflow: hidden;
       background: #08001a;
       color: var(--text);
-      padding: 5.5rem 2rem 4.5rem;
-      text-align: center;
+      padding: 1rem 2rem 2.5rem;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
     }
 
     /* Animated gradient orbs */
@@ -170,7 +178,42 @@
       pointer-events: none;
     }
 
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-about {
+      flex: 1;
+      text-align: left;
+    }
+    .hero-about h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .hero-about h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.35em;
+      background: linear-gradient(to bottom, var(--accent), var(--purple));
+      border-radius: 3px;
+    }
+    .hero-about p {
+      font-size: 0.97rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      opacity: 0.85;
+    }
+    @media (max-width: 680px) {
+      .hero-inner { flex-direction: column; gap: 2.5rem; text-align: center; }
+      .hero-about { text-align: center; }
+      .hero-about h2 { justify-content: center; }
+    }
 
     /* Spinning ring avatar */
     .avatar-wrap {
@@ -275,42 +318,34 @@
     }
     .btn-ghost:hover { background: rgba(255,45,120,0.16); border-color: rgba(255,45,120,0.7); box-shadow: 0 0 16px rgba(255,45,120,0.3); }
 
-    /* ────────────────── Stats bar ────────────────── */
-    .stats-bar {
-      background: #100820;
-      border-bottom: 1px solid rgba(255,45,120,0.2);
-      display: flex;
-      justify-content: center;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
-    }
-    .stat {
-      flex: 1;
-      max-width: 200px;
-      text-align: center;
-      padding: 1.35rem 0.5rem;
-      border-right: 1px solid rgba(255,45,120,0.14);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      text-shadow: 0 0 18px rgba(255,45,120,0.65);
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 0.28rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      font-weight: 600;
-    }
-
     /* ────────────────── Layout ────────────────── */
-    main { max-width: 900px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    main { max-width: 1200px; margin: 0 auto; padding: 3.5rem 1.5rem; }
     section { margin-bottom: 4.5rem; }
+
+    /* Research grid inside two-col layout → 2×2 */
+    .two-col-left .research-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Two-column row */
+    .two-col-row {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+      margin-bottom: 4.5rem;
+    }
+    .two-col-left {
+      flex: 1;
+      min-width: 0;
+    }
+    .two-col-left section { margin-bottom: 3rem; }
+    .two-col-left section:last-child { margin-bottom: 0; }
+    .two-col-right {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 0;
+    }
+    @media (max-width: 680px) {
+      .two-col-row { flex-direction: column; gap: 0; }
+    }
 
     h2 {
       font-size: 1.35rem;
@@ -565,8 +600,10 @@
     .pub-link:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); text-shadow: 0 0 6px rgba(255,45,120,0.4); }
 
     /* ────────────────── Awards ────────────────── */
-    .award-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .award-list { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.7rem; }
     .award-item {
+      flex: 1;
+      min-width: 220px;
       display: flex;
       gap: 1.1rem;
       align-items: center;
@@ -687,123 +724,123 @@
   <div class="hero-orb hero-orb-3"></div>
   <div class="hero-grid"></div>
 
-  <div class="hero-content">
-    <div class="avatar-wrap">
-      <div class="avatar-ring"></div>
-      <div class="avatar-ring-mask"></div>
-      <div class="avatar-face">👨‍🔬</div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring-mask"></div>
+        <div class="avatar-face">👨‍🔬</div>
+      </div>
+      <h1>Mehedi Hasan Raju</h1>
+      <p class="subtitle" id="typed-subtitle">&nbsp;</p>
+      <p class="institution">Texas State University &nbsp;·&nbsp; San Marcos, TX, USA</p>
+      <div class="hero-links">
+        <!-- <a href="#contact"      class="btn btn-white">Contact Me</a>
+        <a href="#publications" class="btn btn-ghost">Publications</a> -->
+        <a href="https://scholar.google.com/citations?user=lrfyJKIAAAAJ&hl=en" target="_blank" class="btn btn-ghost">Google Scholar</a>
+      </div>
     </div>
-    <h1>Mehedi Hasan Raju</h1>
-    <p class="subtitle" id="typed-subtitle">&nbsp;</p>
-    <p class="institution">Texas State University &nbsp;·&nbsp; San Marcos, TX, USA</p>
-    <div class="hero-links">
-      <!-- <a href="#contact"      class="btn btn-white">Contact Me</a>
-      <a href="#publications" class="btn btn-ghost">Publications</a> -->
-      <a href="https://scholar.google.com/citations?user=lrfyJKIAAAAJ&hl=en" target="_blank" class="btn btn-ghost">Google Scholar</a>
+    <div class="hero-about" id="about">
+      <h2>About</h2>
+      <p>
+        I am a final-year doctoral student in the Department of Computer Science at Texas State University focusing on Eye-Tracking under the supervision of Dr. Oleg Komogortsev.
+        My research revolves around eye tracking, eye-movement biometrics, and signal processing.
+      </p>
     </div>
   </div>
 </header>
 
-<!-- Stats bar -->
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">13</div><div class="stat-label">Publications</div></div>
-  <div class="stat"><div class="stat-num">147</div><div class="stat-label">Citations</div></div>
-  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Awards</div></div>
-</div>
-
 <main>
 
-  <!-- About -->
-  <section id="about" class="reveal">
-    <h2>About</h2>
-    <p>
-      I am a final-year doctoral student in the Department of Computer Science at Texas State University focusing on Eye-Tracking under the supervision of Dr. Oleg Komogortsev.
-      My research revolves around eye tracking, eye-movement biometrics, and signal processing.
-    </p>
-  </section>
+  <!-- Research + Education | PhD Timeline -->
+  <div class="two-col-row reveal">
 
-  <!-- PhD Timeline -->
-  <section id="news" class="reveal">
-    <h2>Ph.D. Timeline</h2>
-    <div class="news-list">
-      <div class="news-item">
-        <span class="news-date">April 2026</span>
-        <span class="news-text">Papers accepted at <strong>IEEE Access</strong> — on Gaze Recalibration.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">March 2026</span>
-        <span class="news-text">Papers accepted at <strong>IEEE TBIOM</strong> — on reliability of embedding learned from Deep learning based gaze authentication.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">July 2025</span>
-        <span class="news-text">Two papers accepted at <strong>IJCB 2025</strong> — on temporal-persistence of deep-learning biometrics and ocular authentication fusion.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">May 2025</span>
-        <span class="news-text">Paper accepted at <strong>IEEE Security &amp; Privacy Workshops (SPW) 2025</strong>: Eye Movement Biometrics in VR.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">March 2025</span>
-        <span class="news-text">Short paper accepted at <strong>ETRA 2025</strong>: <em>Evaluating Eye Tracking Signal Quality with Real-time Gaze Interaction Simulation.</em></span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">Nov 2024</span>
-        <span class="news-text">Successfully defended my <strong>dissertation proposal</strong> at Texas State University.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">Aug 2024</span>
-        <span class="news-text">Awarded the <strong>TXST Graduate College Scholarship</strong>.</span>
-      </div>
-      <div class="news-item">
-        <span class="news-date">Aug 2023</span>
-        <span class="news-text">Awarded the <strong>TXST Doctoral Retention Scholarship</strong> and the <strong>CS Research Excellence Award</strong>.</span>
-      </div>
-    </div>
-  </section>
+    <div class="two-col-left">
+      <!-- Research Interests -->
+      <section id="research">
+        <h2>Research Interests</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <div class="icon-wrap">👁️</div>
+            <h3>Eye Tracking</h3>
+            <p>Signal quality evaluation, noise characterisation, and filtering of eye-tracking time-series data.</p>
+          </div>
+          <div class="research-card">
+            <div class="icon-wrap">🔐</div>
+            <h3>Biometrics</h3>
+            <p>Eye movement-based authentication, liveness detection.</p>
+          </div>
+          <div class="research-card">
+            <div class="icon-wrap">🧠</div>
+            <h3>Machine Learning</h3>
+            <p>Deep learning for temporal-persistence biometrics.</p>
+          </div>
+          <div class="research-card">
+            <div class="icon-wrap">📡</div>
+            <h3>Signal Processing</h3>
+            <p>Frequency-domain analysis, digital filtering, and signal-vs-noise separation.</p>
+          </div>
+        </div>
+      </section>
 
-  <!-- Research Interests -->
-  <section id="research" class="reveal">
-    <h2>Research Interests</h2>
-    <div class="research-grid">
-      <div class="research-card">
-        <div class="icon-wrap">👁️</div>
-        <h3>Eye Tracking</h3>
-        <p>Signal quality evaluation, noise characterisation, and filtering of eye-tracking time-series data.</p>
-      </div>
-      <div class="research-card">
-        <div class="icon-wrap">🔐</div>
-        <h3>Biometrics</h3>
-        <p>Eye movement-based authentication, liveness detection.</p>
-      </div>
-      <div class="research-card">
-        <div class="icon-wrap">🧠</div>
-        <h3>Machine Learning</h3>
-        <p>Deep learning for temporal-persistence biometrics.</p>
-      </div>
-      <div class="research-card">
-        <div class="icon-wrap">📡</div>
-        <h3>Signal Processing</h3>
-        <p>Frequency-domain analysis, digital filtering, and signal-vs-noise separation.</p>
-      </div>
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-deg">Ph.D. in Computer Science</div>
+            <div class="edu-inst">Texas State University, San Marcos, TX</div>
+            <div class="edu-year">Jan 2021 – Present</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-deg">B.S. in Information and Communication Engineering</div>
+            <div class="edu-inst">Bangladesh University of Professionals, Dhaka, Bangladesh</div>
+            <div class="edu-year">2015 – 2018</div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
 
-  <!-- Education -->
-  <section id="education" class="reveal">
-    <h2>Education</h2>
-    <div class="edu-list">
-      <div class="edu-item">
-        <div class="edu-deg">Ph.D. in Computer Science</div>
-        <div class="edu-inst">Texas State University, San Marcos, TX</div>
-        <div class="edu-year">Jan 2021 – Present</div>
+    <!-- PhD Timeline -->
+    <section id="news" class="two-col-right">
+      <h2>Ph.D. Timeline</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="news-date">April 2026</span>
+          <span class="news-text">Papers accepted at <strong>IEEE Access</strong> — on Gaze Recalibration.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">March 2026</span>
+          <span class="news-text">Papers accepted at <strong>IEEE TBIOM</strong> — on reliability of embedding learned from Deep learning based gaze authentication.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">July 2025</span>
+          <span class="news-text">Two papers accepted at <strong>IJCB 2025</strong> — on temporal-persistence of deep-learning biometrics and ocular authentication fusion.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">May 2025</span>
+          <span class="news-text">Paper accepted at <strong>IEEE Security &amp; Privacy Workshops (SPW) 2025</strong>: Eye Movement Biometrics in VR.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">March 2025</span>
+          <span class="news-text">Short paper accepted at <strong>ETRA 2025</strong>: <em>Evaluating Eye Tracking Signal Quality with Real-time Gaze Interaction Simulation.</em></span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">Nov 2024</span>
+          <span class="news-text">Successfully defended my <strong>dissertation proposal</strong> at Texas State University.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">Aug 2024</span>
+          <span class="news-text">Awarded the <strong>TXST Graduate College Scholarship</strong>.</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">Aug 2023</span>
+          <span class="news-text">Awarded the <strong>TXST Doctoral Retention Scholarship</strong> and the <strong>CS Research Excellence Award</strong>.</span>
+        </div>
       </div>
-      <div class="edu-item">
-        <div class="edu-deg">B.S. in Information and Communication Engineering</div>
-        <div class="edu-inst">Bangladesh University of Professionals, Dhaka, Bangladesh</div>
-        <div class="edu-year">2015 – 2018</div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+  </div>
 
   <!-- Publications -->
   <section id="publications" class="reveal">
@@ -824,7 +861,7 @@
       <div class="pub-item" data-type="journal">
         <div class="pub-title">Embedding Reliability as a Predictor of Biometric Performance in Eye-Movement Biometrics</div>
         <div class="pub-authors"><span class="pub-me">Mehedi Hasan Raju</span>, Lee Friedman, Oleg Komogortsev</div>
-        <span class="pub-venue">IEEE Transactions on Biometrics, Behavior, and Identity Science.</span>
+        <span class="pub-venue">IEEE Transactions on Biometrics, Behavior, and Identity Science</span>
         <div class="pub-links">
           <a href="https://doi.org/10.1109/TBIOM.2026.3677092" target="_blank" class="pub-link">DOI</a>
         </div>
@@ -982,21 +1019,21 @@
         <div class="award-icon-wrap">🏆</div>
         <div>
           <div class="award-name">Graduate College Scholarship</div>
-          <div class="award-org">Texas State University &nbsp;·&nbsp; August 2024</div>
+          <div class="award-org">Texas State University &nbsp;·&nbsp; 2024, 2025, 2026</div>
         </div>
       </div>
       <div class="award-item">
         <div class="award-icon-wrap">🎖️</div>
         <div>
           <div class="award-name">Doctoral Retention Scholarship</div>
-          <div class="award-org">Texas State University &nbsp;·&nbsp; August 2023</div>
+          <div class="award-org">Texas State University &nbsp;·&nbsp; 2023-2024</div>
         </div>
       </div>
       <div class="award-item">
         <div class="award-icon-wrap">🏅</div>
         <div>
           <div class="award-name">Computer Science Research Excellence Award</div>
-          <div class="award-org">Texas State University, Dept. of CS &nbsp;·&nbsp; 2022 &amp; 2023</div>
+          <div class="award-org">Texas State University &nbsp;·&nbsp; 2022 &amp; 2023</div>
         </div>
       </div>
     </div>
@@ -1110,5 +1147,3 @@
 
 </body>
 </html>
-
-
