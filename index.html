@@ -749,8 +749,11 @@
     /* while the 300px rail is present, main is too narrow for two columns
        below ~1200px, so stack them well before the rail itself collapses */
     @media (max-width:1199px) {
-      .two-col-row { flex-direction:column; gap:0; }
-      .two-col-right { margin-bottom:2rem; }
+      /* stacked, the columns need the same 2rem rhythm as the sections:
+         gap:0 left the timeline touching the education card, and the
+         right column's own margin then doubled the space before it */
+      .two-col-row { flex-direction:column; gap:2rem; }
+      .two-col-right { margin-bottom:0; }
     }
     footer { border-top:1px solid var(--border); }
 
@@ -764,7 +767,7 @@
       .mobile-bar .hamburger { display:flex; }
       .shell { flex-direction:column; }
       .rail { position:static; width:auto; flex:none; max-height:none; border-right:none;
-              border-bottom:1px solid var(--border); }
+              border-bottom:1px solid var(--border); padding-bottom:1.2rem; }
       #nav-links { display:none; }
       #nav-links.open { display:flex; }
       main { max-width:none; padding:2rem 1.2rem; }
