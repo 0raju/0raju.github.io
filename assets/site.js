@@ -161,6 +161,109 @@
     });
   });
 
+  /* ── Travel map (hobbies.html): drawn the first time the map is opened ── */
+  (function () {
+    const svg = document.getElementById('travel-map');
+    if (!svg) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const tip = document.getElementById('map-tip');
+    const wrap = svg.parentElement;
+    let started = false;
+    const load = src => new Promise((ok, fail) => {
+      const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s);
+    });
+
+    window.initTravelMap = async function () {
+      if (started) return; started = true;
+      const data = JSON.parse(document.getElementById('travel-data').textContent);
+      svg.insertAdjacentHTML('afterend', '<p class="map-loading" id="map-loading">Loading the map…</p>');
+      try {
+        await load('https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js');
+        await load('https://cdn.jsdelivr.net/npm/d3-geo@3.1.0/dist/d3-geo.min.js');
+        await load('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js');
+        const world = await (await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')).json();
+        draw(world, data);
+      } catch (e) {
+        svg.style.display = 'none';
+        wrap.insertAdjacentHTML('beforeend', '<p class="map-error">The map couldn’t load right now. Please try again later.</p>');
+      } finally {
+        const l = document.getElementById('map-loading'); if (l) l.remove();
+      }
+    };
+
+    function draw(world, data) {
+      const features = topojson.feature(world, world.objects.countries).features
+        .filter(f => f.properties.name !== 'Antarctica');
+      const proj = d3.geoNaturalEarth1().fitSize([960, 470], { type: 'FeatureCollection', features });
+      const path = d3.geoPath(proj);
+      const born = new Set(data.born || []), lived = new Set(data.lived || []), visited = new Set(data.visited || []);
+      const notes = data.notes || {};
+      const LABEL = { born: 'Born here', lived: 'Lived here', visited: 'Visited' };
+      const g = document.createElementNS(NS, 'g');
+      features.forEach(f => {
+        const name = f.properties.name;
+        const el = document.createElementNS(NS, 'path');
+        el.setAttribute('d', path(f));
+        const status = born.has(name) ? 'born' : lived.has(name) ? 'lived' : visited.has(name) ? 'visited' : '';
+        el.setAttribute('class', 'country ' + status);
+        el.dataset.name = name;
+        if (status) el.dataset.sub = notes[name] || LABEL[status];
+        g.appendChild(el);
+      });
+      svg.appendChild(g);
+
+      (data.cities || []).forEach(c => {
+        const [x, y] = proj([c.lon, c.lat]);
+        const pulse = document.createElementNS(NS, 'circle');
+        pulse.setAttribute('class', 'pin-pulse'); pulse.setAttribute('cx', x); pulse.setAttribute('cy', y); pulse.setAttribute('r', 5);
+        const dot = document.createElementNS(NS, 'circle');
+        dot.setAttribute('class', 'pin-dot'); dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 5);
+        dot.dataset.name = c.name; if (c.note) dot.dataset.sub = c.note;
+        svg.append(pulse, dot);
+      });
+
+      const known = new Set(features.map(f => f.properties.name));
+      const all = [...born, ...lived, ...visited];
+      all.forEach(n => { if (!known.has(n)) console.warn('Travel map: unknown country name "' + n + '"'); });
+      const countries = new Set(all.filter(n => known.has(n))).size;
+      const cities = (data.cities || []).length;
+      document.getElementById('map-stats').innerHTML =
+        `<div class="map-stat"><b>${countries}</b><span>${countries === 1 ? 'country' : 'countries'}</span></div>` +
+        (cities ? `<div class="map-stat"><b>${cities}</b><span>${cities === 1 ? 'city pinned' : 'cities pinned'}</span></div>` : '');
+
+      function showTip(e) {
+        const t = e.target.closest('[data-name]');
+        if (!t) { tip.hidden = true; return; }
+        const r = wrap.getBoundingClientRect();
+        tip.innerHTML = t.dataset.name + (t.dataset.sub ? '<small>' + t.dataset.sub + '</small>' : '');
+        tip.style.left = (e.clientX - r.left) + 'px';
+        tip.style.top = (e.clientY - r.top) + 'px';
+        tip.hidden = false;
+      }
+      svg.addEventListener('pointermove', showTip);
+      svg.addEventListener('pointerdown', showTip);
+      svg.addEventListener('pointerleave', () => { tip.hidden = true; });
+    }
+  })();
+
+  /* ── Hobbies: cards open their panels (Travelling → map, Reading Books → bookshelf).
+        hobbies.html#map or #books opens that panel directly. ── */
+  document.querySelectorAll('.hobby-toggle[aria-controls]').forEach(card => {
+    const panel = document.getElementById(card.getAttribute('aria-controls'));
+    if (!panel) return;
+    function setOpen(open, scroll) {
+      panel.hidden = !open;
+      card.setAttribute('aria-expanded', String(open));
+      if (open && panel.id === 'map' && window.initTravelMap) window.initTravelMap();
+      if (open && scroll) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    card.addEventListener('click', () => setOpen(panel.hidden, true));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(panel.hidden, true); }
+    });
+    if (location.hash === '#' + panel.id) setOpen(true, true);
+  });
+
   /* ── Publications: filter + show the newest few ── */
   (function () {
     const LIMIT = Infinity;   // own page: show every paper

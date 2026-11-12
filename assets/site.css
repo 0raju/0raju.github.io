@@ -1079,3 +1079,124 @@ footer { background:#0b1220; color:#94a3b8; border:none; }
 /* home: Latest News column ends level with the Education panel */
 body[data-page="home"] #news .news-list { gap:0.45rem; }
 body[data-page="home"] #news .news-item { padding:0.8rem 1.15rem; }
+
+/* ============ Hobbies page ============ */
+.hobby-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; }
+@media (max-width:900px) { .hobby-grid { grid-template-columns:1fr; } }
+.hobby-card { position:relative; overflow:hidden; background:var(--white); border:1px solid var(--border);
+  border-radius:16px; padding:1.5rem 1.4rem 1.4rem; box-shadow:var(--shadow-sm);
+  transition:box-shadow 0.2s, transform 0.2s, border-color 0.2s; }
+.hobby-card::before { content:''; position:absolute; left:0; right:0; top:0; height:3px;
+  background:linear-gradient(90deg, #2563eb, #06b6d4); }
+.hobby-card:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); border-color:rgba(37,99,235,0.38); }
+.hobby-card, .hobby-card * { font-family:'Space Grotesk', sans-serif; }
+.hobby-icon { width:56px; height:56px; border-radius:14px; display:grid; place-items:center;
+  font-size:1.75rem; background:var(--accent-light); margin-bottom:0.9rem; }
+.hobby-card h3 { font-size:1.15rem; font-weight:700; color:var(--text); margin-bottom:0.4rem; }
+.hobby-card p { font-size:0.92rem; line-height:1.55; color:var(--text-2); }
+.hobby-card .ball { display:inline-block; }
+.hobby-card:hover .ball { animation:ballBounce 0.7s ease-in-out infinite; }
+@keyframes ballBounce { 0%, 100% { transform:translateY(0) rotate(0); } 50% { transform:translateY(-7px) rotate(180deg); } }
+@media (prefers-reduced-motion: reduce) { .hobby-card:hover .ball { animation:none; } }
+
+.book-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 190px)); gap:1.4rem; }
+.book { margin:0; }
+.book img { display:block; width:100%; aspect-ratio:2 / 3; object-fit:cover; border-radius:8px;
+  box-shadow:0 10px 24px rgba(21,32,43,0.18); transition:transform 0.25s; }
+.book:hover img { transform:translateY(-4px) rotate(-1.5deg); }
+.book figcaption { display:flex; flex-direction:column; gap:0.1rem; margin-top:0.75rem; }
+.book-title { font:600 0.95rem 'Space Grotesk', sans-serif; color:var(--text); }
+.book-bn { font-size:0.85rem; color:var(--text-2); }
+.book-author { font:0.8rem 'Space Grotesk', sans-serif; color:var(--muted); }
+@media (max-width:520px) { .book-grid { grid-template-columns:repeat(2, 1fr); gap:1rem; } }
+
+/* Reading Books card opens the bookshelf */
+.hobby-toggle { cursor:pointer; outline:none; }
+.hobby-toggle:focus-visible { box-shadow:0 0 0 3px rgba(37,99,235,0.35); }
+.toggle-hint { display:inline-block; margin-top:0.9rem; font:600 0.85rem 'Space Grotesk', sans-serif; color:var(--accent); }
+.toggle-hint .hint-close { display:none; }
+.hobby-toggle[aria-expanded="true"] .hint-open { display:none; }
+.hobby-toggle[aria-expanded="true"] .hint-close { display:inline; }
+.hobby-toggle[aria-expanded="true"] { border-color:rgba(37,99,235,0.55); box-shadow:var(--shadow-md); }
+.shelf:not([hidden]) { animation:shelfIn 0.4s ease both; }
+@keyframes shelfIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+.shelf .book { animation:bookIn 0.45s ease both; }
+.shelf .book:nth-child(2) { animation-delay:0.07s; }
+.shelf .book:nth-child(3) { animation-delay:0.14s; }
+.shelf .book:nth-child(4) { animation-delay:0.21s; }
+.shelf .book:nth-child(n+5) { animation-delay:0.28s; }
+@keyframes bookIn { from { opacity:0; transform:translateY(16px) rotate(-2deg); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .shelf:not([hidden]), .shelf .book { animation:none; } }
+.shelf[hidden] { display:none !important; }
+
+/* Designed covers for book series (no image needed) */
+.gen-cover { position:relative; overflow:hidden; aspect-ratio:2 / 3; border-radius:8px;
+  padding:1rem 0.9rem 0.9rem 1.25rem; display:flex; flex-direction:column; color:#fff;
+  font-family:'Space Grotesk', sans-serif; box-shadow:0 10px 24px rgba(21,32,43,0.18); transition:transform 0.25s; }
+.gen-cover::before { content:''; position:absolute; left:0; top:0; bottom:0; width:9px;
+  background:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.05)); }
+.gen-cover::after { content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px); background-size:14px 14px; }
+.book:hover .gen-cover { transform:translateY(-4px) rotate(-1.5deg); }
+.gc-author { font-size:0.62rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; opacity:0.85; }
+.gc-title { margin-top:0.7rem; font-size:1.45rem; font-weight:700; line-height:1.05; letter-spacing:-0.02em; }
+.gc-tag { margin-top:0.5rem; font-size:0.72rem; font-style:italic; opacity:0.8; }
+.gc-mark { margin-top:auto; align-self:flex-end; font-size:2.2rem; line-height:1; filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35)); }
+.cover-poirot   { background:linear-gradient(160deg, #7f1d1d 0%, #b91c1c 60%, #ea580c 130%); }
+.cover-misir    { background:linear-gradient(160deg, #1e1b4b 0%, #3730a3 60%, #6366f1 130%); }
+.cover-misir .gc-author { letter-spacing:0.02em; text-transform:none; font-size:0.72rem; }
+.cover-misir .gc-title  { font-size:1.75rem; }
+.cover-sherlock { background:linear-gradient(160deg, #052e2b 0%, #065f46 60%, #10b981 130%); }
+
+/* six books fit one row on desktop */
+.book-grid { grid-template-columns:repeat(6, 1fr); }
+@media (max-width:1000px) { .book-grid { grid-template-columns:repeat(3, 1fr); } }
+@media (max-width:520px)  { .book-grid { grid-template-columns:repeat(2, 1fr); gap:1rem; } }
+.shelf .book:nth-child(5) { animation-delay:0.28s; }
+.shelf .book:nth-child(6) { animation-delay:0.35s; }
+.book-series { font:500 0.78rem 'Space Grotesk', sans-serif; color:var(--accent); }
+
+/* ============ Travel map ============ */
+.map-card { position:relative; border-radius:18px; padding:1.3rem 1.4rem 1.1rem; color:#e2e8f0;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(37,99,235,0.35), transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(6,182,212,0.22), transparent 45%),
+    #0b1220;
+  box-shadow:0 14px 34px rgba(11,18,32,0.28); font-family:'Space Grotesk', sans-serif; }
+.map-stats { display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:0.6rem; min-height:3.2rem; }
+.map-stat b { display:block; font-size:1.9rem; line-height:1; font-weight:700; color:#fff; }
+.map-stat span { font-size:0.78rem; color:#94a3b8; letter-spacing:0.04em; }
+.map-wrap { position:relative; }
+#travel-map { display:block; width:100%; height:auto; }
+#travel-map .country { fill:#1c2740; stroke:#0b1220; stroke-width:0.5; transition:fill 0.2s; }
+#travel-map .country:hover { fill:#2c3a57; }
+#travel-map .country.visited { fill:#3b82f6; }
+#travel-map .country.lived { fill:#22d3ee; }
+#travel-map .country.born { fill:#34d399; stroke:#34d399; stroke-width:2.5; stroke-linejoin:round; filter:drop-shadow(0 0 4px rgba(52,211,153,0.9)); }
+#travel-map .country.visited:hover, #travel-map .country.lived:hover, #travel-map .country.born:hover { filter:brightness(1.15); }
+#travel-map .pin-dot { fill:#fde047; stroke:#0b1220; stroke-width:1.5; cursor:pointer; }
+#travel-map .pin-pulse { fill:none; stroke:#fde047; stroke-width:2; transform-box:fill-box; transform-origin:center;
+  animation:pinPulse 2.2s ease-out infinite; pointer-events:none; }
+@keyframes pinPulse { 0% { transform:scale(0.6); opacity:0.9; } 100% { transform:scale(3.4); opacity:0; } }
+@media (prefers-reduced-motion: reduce) { #travel-map .pin-pulse { animation:none; opacity:0; } }
+.map-tip { position:absolute; z-index:5; pointer-events:none; white-space:nowrap; transform:translate(-50%, -135%);
+  background:#fff; color:#0b1220; border-radius:8px; padding:0.35rem 0.65rem; box-shadow:0 6px 18px rgba(0,0,0,0.3);
+  font:600 0.8rem 'Space Grotesk', sans-serif; }
+.map-tip small { display:block; font-weight:500; color:#475569; }
+.map-legend { display:flex; gap:1.2rem; flex-wrap:wrap; margin-top:0.6rem; font-size:0.8rem; color:#94a3b8; }
+.lg { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:0.45rem; vertical-align:-1px; }
+.lg-born { background:#34d399; } .lg-lived { background:#22d3ee; } .lg-visited { background:#3b82f6; } .lg-pin { background:#fde047; border-radius:50%; }
+.map-loading, .map-error { padding:3rem 1rem; text-align:center; color:#94a3b8; font-size:0.9rem; }
+@media (max-width:680px) { .map-card { padding:1rem 0.8rem 0.9rem; } .map-stat b { font-size:1.5rem; } }
+
+/* Bookshelf without cover images (class "no-covers" on #books): a tidy list of book cards */
+.shelf.no-covers .book img, .shelf.no-covers .book .gen-cover { display:none; }
+.shelf.no-covers .book-grid { grid-template-columns:repeat(3, 1fr); gap:0.8rem; }
+@media (max-width:900px) { .shelf.no-covers .book-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:560px) { .shelf.no-covers .book-grid { grid-template-columns:1fr; } }
+.shelf.no-covers .book { position:relative; background:var(--white); border:1px solid var(--border); border-radius:12px;
+  padding:0.85rem 1rem 0.85rem 2.9rem; box-shadow:var(--shadow-sm); transition:box-shadow 0.2s, transform 0.2s; }
+.shelf.no-covers .book::before { content:'📖'; position:absolute; left:0.9rem; top:0.85rem; font-size:1.2rem; }
+.shelf.no-covers .book:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.shelf.no-covers .book figcaption { margin-top:0; }
+

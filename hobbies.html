@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNMQ4QSCLN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BNMQ4QSCLN');
+  </script>
+  <title>Hobbies · Mehedi Hasan Raju</title>
+  <meta name="description" content="Off the clock: travelling, watching soccer, and reading books." />
+  <meta name="author" content="Mehedi Hasan Raju" />
+  <link rel="canonical" href="https://0raju.github.io/hobbies.html" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Hobbies · Mehedi Hasan Raju" />
+  <meta property="og:description" content="Postdoctoral Researcher, Ph.D. in Computer Science. Research in HCI, eye tracking, eye-movement biometrics, XR, and machine learning." />
+  <meta property="og:url" content="https://0raju.github.io/hobbies.html" />
+  <meta property="og:image" content="https://0raju.github.io/Images/Rajuc.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f5fa8'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMR%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="hobbies">
+
+<div class="mobile-bar">
+  <a href="index.html" class="logo">Mehedi <span>Hasan Raju</span></a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+</div>
+
+<div class="shell">
+  <header class="page-hero">
+    <a class="mini-id" href="index.html"><img src="Images/Rajuc-web.jpg" alt="" width="34" height="34"><span>Mehedi Hasan Raju</span></a>
+    <h1>Hobbies <span class="googly" id="googly" tabindex="0" role="img" aria-label="Googly eyes that follow your cursor"
+          data-tip="Yes, I study eye tracking. These ones are tracking you. 👀">
+      <span class="eye"><span class="pupil"></span></span><span class="eye"><span class="pupil"></span></span>
+    </span></h1>
+    <p>What my eyes do when they're off the clock.</p>
+  </header>
+  <nav class="topnav"><ul id="nav-links"><li><a href="index.html" data-page="home">Home</a></li><li><a href="publications.html" data-page="publications">Publications</a></li><li><a href="news.html" data-page="news">News</a></li><li><a href="hobbies.html" data-page="hobbies">Hobbies</a></li></ul></nav>
+  <main>
+    <section id="hobbies" class="reveal">
+      <h2>Off the clock</h2>
+      <div class="hobby-grid">
+        <div class="hobby-card hobby-toggle" id="map-toggle" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="map">
+          <div class="hobby-icon" aria-hidden="true">✈️</div>
+          <h3>Travelling</h3>
+          <p>New places, new food, and far too many photos. Airports are also excellent for people-watching (strictly for research).</p>
+          <span class="toggle-hint"><span class="hint-open">See my map ↓</span><span class="hint-close">Close map ↑</span></span>
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-icon" aria-hidden="true"><span class="ball">⚽</span></div>
+          <h3>Watching Soccer</h3>
+          <p>Ninety minutes of tracking one tiny ball across a giant field. Basically an eye-tracking study, with snacks.</p>
+        </div>
+        <!-- To bring the bookshelf back: change the next line to
+             <div class="hobby-card hobby-toggle" id="books-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="books">
+             and restore the "See my bookshelf" hint below. -->
+        <div class="hobby-card">
+          <div class="hobby-icon" aria-hidden="true">📚</div>
+          <h3>Reading Books</h3>
+          <p>A soft spot for Bangla literature: the kind of books you read slowly so they don't end too soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Travel map: opens when someone clicks the "Travelling" card.
+         To update it, edit the lists below. Country names must match the map's names
+         (e.g. "United States of America", "United Kingdom", "India", "Japan").
+         England / Scotland / Wales are drawn as "United Kingdom"; use "notes" to say which. -->
+    <section id="map" class="shelf" hidden>
+      <h2>Where I've been</h2>
+      <div class="map-card">
+        <div class="map-stats" id="map-stats" aria-live="polite"></div>
+        <div class="map-wrap">
+          <svg id="travel-map" viewBox="0 0 960 470" role="img"
+               aria-label="World map of the countries I have lived in and visited"></svg>
+          <div class="map-tip" id="map-tip" hidden></div>
+        </div>
+        <div class="map-legend">
+          <span><i class="lg lg-born"></i>Born</span>
+          <span><i class="lg lg-lived"></i>Lived</span>
+          <span><i class="lg lg-visited"></i>Visited</span>
+        </div>
+      </div>
+      <script type="application/json" id="travel-data">
+{
+  "born":    ["Bangladesh"],
+  "lived":   ["United States of America"],
+  "visited": ["United Kingdom", "Turkey", "India", "Nepal"],
+  "notes": {
+    "Bangladesh": "Born",
+    "United States of America": "Live here",
+    "United Kingdom": "Visited England & Scotland"
+  },
+  "cities": []
+}
+      </script>
+    </section>
+
+    <!-- Bookshelf: opens when someone clicks the "Reading Books" card.
+         To add a book: put the cover in Images/ and copy one <figure class="book"> block below. -->
+    <section id="books" class="shelf" hidden>  <!-- hidden for now: nothing opens it (see the Reading Books card) -->
+      <h2>On my bookshelf</h2>
+      <div class="book-grid">
+          <figure class="book">
+            <img src="Images/adorsho_hindu_hotel.jpg" alt="Cover of Adorsho Hindu Hotel by Bibhutibhushan Bandyopadhyay" loading="lazy">
+            <figcaption>
+              <span class="book-title">Adorsho Hindu Hotel</span>
+              <span class="book-bn" lang="bn">আদর্শ হিন্দু হোটেল</span>
+              <span class="book-author">Bibhutibhushan Bandyopadhyay</span>
+            </figcaption>
+          </figure>
+          <figure class="book">
+            <img src="Images/joddopi_amar_guru.jpg" alt="Cover of Jadyapi Amar Guru by Ahmed Sofa" loading="lazy">
+            <figcaption>
+              <span class="book-title">Jadyapi Amar Guru</span>
+              <span class="book-bn" lang="bn">যদ্যপি আমার গুরু</span>
+              <span class="book-author">Ahmed Sofa</span>
+            </figcaption>
+          </figure>
+          <figure class="book">
+            <img src="Images/ononto_ombore.jpg" alt="Cover of Ononto Ombore by Humayun Ahmed" loading="lazy">
+            <figcaption>
+              <span class="book-title">Ononto Ombore</span>
+              <span class="book-bn" lang="bn">অনন্ত অম্বরে</span>
+              <span class="book-author">Humayun Ahmed</span>
+            </figcaption>
+          </figure>
+          <!-- Series favourites: one well-known book per series -->
+          <figure class="book">
+            <img src="Images/poirot_orient_express.jpg" alt="Cover of Murder on the Orient Express by Agatha Christie" loading="lazy">
+            <figcaption>
+              <span class="book-title">Murder on the Orient Express</span>
+              <span class="book-series">Hercule Poirot series</span>
+              <span class="book-author">Agatha Christie</span>
+            </figcaption>
+          </figure>
+          <figure class="book">
+            <img src="Images/debi_misir_ali.jpg" alt="Cover of Debi by Humayun Ahmed" loading="lazy">
+            <figcaption>
+              <span class="book-title">Debi</span>
+              <span class="book-bn" lang="bn">দেবী</span>
+              <span class="book-series">Misir Ali series</span>
+              <span class="book-author">Humayun Ahmed</span>
+            </figcaption>
+          </figure>
+          <figure class="book">
+            <img src="Images/hound_of_the_baskervilles.jpg" alt="Cover of The Hound of the Baskervilles by Arthur Conan Doyle" loading="lazy">
+            <figcaption>
+              <span class="book-title">The Hound of the Baskervilles</span>
+              <span class="book-series">Sherlock Holmes series</span>
+              <span class="book-author">Arthur Conan Doyle</span>
+            </figcaption>
+          </figure>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  &copy; 2026 Mehedi Hasan Raju &nbsp;·&nbsp; Ph.D., Computer Science, Texas State University
+  <span class="footer-joke">No eyeballs were tracked in the making of this website. (The googly ones don't count.)</span>
+</footer>
+
+<button id="back-top" aria-label="Back to top">↑</button>
+<script src="assets/site.js"></script>
+</body>
+</html>
