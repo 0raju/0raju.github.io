@@ -1,3 +1,21 @@
+  /* ── Analytics events (sent only on the live site; see the GA tag in each page's <head>) ── */
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ page: document.body.dataset.page }, params || {}));
+  }
+  const paperTitle = el => {
+    const t = el && el.closest('.pub-item, .featured-card');
+    const h = t && t.querySelector('.pub-title, h3');
+    return h ? (h.childNodes[0].textContent || '').trim() : '';
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('mailto:')) track('email_click');
+    else if (a.classList.contains('pub-link')) track('paper_link_click', { link_type: a.textContent.trim(), paper_title: paperTitle(a) });
+    else if (a.classList.contains('icon-link')) track('profile_click', { profile: a.getAttribute('aria-label') || href });
+  });
+
   /* ── Hamburger menu ── */
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('nav-links');
@@ -154,7 +172,7 @@
     flip.append(front, back); item.appendChild(flip);
     item.tabIndex = 0;
     item.title = 'Click to flip';
-    const toggle = () => item.classList.toggle('flipped');
+    const toggle = () => { if (item.classList.toggle('flipped')) track('paper_flip', { paper_title: paperTitle(item) }); };
     item.addEventListener('click', e => { if (!e.target.closest('a')) toggle(); });
     item.addEventListener('keydown', e => {
       if ((e.key === 'Enter' || e.key === ' ') && e.target === item) { e.preventDefault(); toggle(); }
@@ -254,7 +272,7 @@
     function setOpen(open, scroll) {
       panel.hidden = !open;
       card.setAttribute('aria-expanded', String(open));
-      if (open && panel.id === 'map' && window.initTravelMap) window.initTravelMap();
+      if (open && panel.id === 'map' && window.initTravelMap) { window.initTravelMap(); track('travel_map_open'); }
       if (open && scroll) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     card.addEventListener('click', () => setOpen(panel.hidden, true));
